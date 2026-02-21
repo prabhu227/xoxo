@@ -3,6 +3,7 @@ const statusText=document.querySelector(".status");
 const scoreXText=document.getElementById("scoreX");
 const scoreOText=document.getElementById("scoreO");
 const roundText=document.getElementById("round");
+const themeBtn=document.getElementById("themeBtn");
 
 const modeScreen=document.getElementById("modeScreen");
 const gameContainer=document.getElementById("gameContainer");
@@ -24,9 +25,16 @@ const winPatterns=[
 [0,4,8],[2,4,6]
 ];
 
+/* 🌙☀️ THEME TOGGLE */
 function toggleTheme(){
 document.body.classList.toggle("dark");
 document.body.classList.toggle("light");
+
+if(document.body.classList.contains("dark")){
+themeBtn.textContent="☀️";
+}else{
+themeBtn.textContent="🌙";
+}
 }
 
 function startGame(mode){

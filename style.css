@@ -10,56 +10,81 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-transition:0.4s;
+transition:0.5s ease;
 }
 
+/* 🌿 RELAXING LIGHT THEME */
 body.light{
-background:linear-gradient(135deg,#667eea,#764ba2);
-color:white;
+background:linear-gradient(135deg,#d4fc79,#96e6a1);
+color:#2d3436;
 }
 
+/* 🌌 MODERN DARK THEME */
 body.dark{
-background:#111;
-color:#eee;
+background:linear-gradient(135deg,#141e30,#243b55);
+color:#f5f6fa;
 }
 
 .theme-toggle{
 position:fixed;
 top:15px;
 right:20px;
-padding:8px 12px;
+padding:10px 14px;
 border:none;
 border-radius:50px;
 cursor:pointer;
-font-size:16px;
-z-index:1000;
+font-size:18px;
+background:white;
+transition:0.3s;
+}
+
+body.dark .theme-toggle{
+background:#222;
+color:#fff;
 }
 
 .hidden{display:none;}
 
 .mode-screen, .container{
 text-align:center;
-padding:25px;
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(12px);
+padding:30px;
+background:rgba(255,255,255,0.2);
+backdrop-filter:blur(15px);
 border-radius:20px;
 min-width:320px;
+transition:0.4s;
+}
+
+body.dark .mode-screen,
+body.dark .container{
+background:rgba(0,0,0,0.4);
 }
 
 button{
 margin:8px;
-padding:8px 18px;
+padding:10px 20px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 font-weight:500;
+background:#ffffffcc;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+body.dark button{
+background:#333;
+color:white;
 }
 
 .board{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin:15px 0;
+gap:12px;
+margin:20px 0;
 }
 
 .cell{
@@ -70,10 +95,14 @@ justify-content:center;
 align-items:center;
 font-size:40px;
 font-weight:bold;
-background:rgba(255,255,255,0.2);
-border-radius:15px;
+background:rgba(255,255,255,0.4);
+border-radius:18px;
 cursor:pointer;
 transition:0.3s;
+}
+
+body.dark .cell{
+background:rgba(255,255,255,0.1);
 }
 
 .cell:hover{
@@ -81,7 +110,7 @@ transform:scale(1.08);
 }
 
 .win{
-background:#00ff88 !important;
+background:#00ffcc !important;
 box-shadow:0 0 25px #00ffcc;
 animation:pop 0.5s ease;
 }
