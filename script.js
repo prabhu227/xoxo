@@ -14,7 +14,7 @@ let gameMode="pvp";
 let gameActive=true;
 
 let round=1;
-let maxRounds=10;
+let maxRounds=5; // ✅ Changed to 5
 
 let scoreX=0;
 let scoreO=0;
@@ -73,7 +73,16 @@ makeMove(index,currentPlayer);
 
 if(gameMode==="cpu"&&gameActive){
 setTimeout(()=>{
-let bestMove=minimax(board,"O").index;
+let bestMove;
+
+// ✅ Make CPU weaker (20% random move)
+if(Math.random()<0.2){
+let emptyCells=board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+bestMove=emptyCells[Math.floor(Math.random()*emptyCells.length)];
+}else{
+bestMove=minimax(board,"O").index;
+}
+
 makeMove(bestMove,"O");
 },400);
 }
@@ -141,12 +150,20 @@ statusText.textContent="Tournament Draw 🤝";
 function restartBoard(){
 board=["","","","","","","","",""];
 gameActive=true;
+
+// ✅ Alternate starting player in PvP mode
+if(gameMode==="pvp"){
+currentPlayer = (round % 2 === 1) ? "X" : "O";
+}else{
 currentPlayer="X";
+}
+
 cells.forEach(cell=>{
 cell.textContent="";
 cell.classList.remove("win");
 });
-statusText.textContent="X's Turn";
+
+statusText.textContent=`${currentPlayer}'s Turn`;
 }
 
 function minimax(newBoard,player){
